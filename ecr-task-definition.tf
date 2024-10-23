@@ -83,6 +83,12 @@ resource "aws_ecs_task_definition" "telemetry_task" {
           containerPort = 20777
           hostPort      = 20777
           protocol      = "udp"
+        },
+        {
+          name          = "fluxdbexporter-http-8080"
+          containerPort = 8080
+          hostPort      = 8080
+          protocol      = "tcp"
         }
       ]
       environment = [
@@ -94,12 +100,13 @@ resource "aws_ecs_task_definition" "telemetry_task" {
           condition     = "HEALTHY"
         }
       ]
-      healthCheck = {
-        command     = ["CMD-SHELL", "curl -f http://localhost:8080/health/ || exit 1"]
-        interval    = 30
-        timeout     = 5
-        retries     = 3
-      }
+    # Add this once the runtime image is able to install cURL, otherwise the health check will fail because cURL is not installed on the service container
+    #   healthCheck = {
+    #     command     = ["CMD-SHELL", "curl -f http://localhost:8080/health/ || exit 1"]
+    #     interval    = 30
+    #     timeout     = 5
+    #     retries     = 3
+    #   }
       logConfiguration = {  # Correct naming for log configuration
         logDriver = "awslogs"
         options = {

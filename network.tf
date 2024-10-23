@@ -24,7 +24,12 @@ resource "aws_security_group" "telemetry_sg" {
     protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]  // Allow UDP from anywhere
   }
-
+ ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow health check from anywhere
+  }
   // Optionally add egress rules if needed
   egress {
     from_port   = 0

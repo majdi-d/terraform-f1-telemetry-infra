@@ -38,3 +38,13 @@ variable "task_role_arn" {
   type        = string
   default     = "my-ecsTaskExecutionRole"  # Optionally set a default value or leave empty to require input
 }
+
+variable "cluster_name" {
+  description = "The name of the ECS cluster"
+  default     = "f1-telemetry-cluster"
+}
+
+variable "vpc_name" {
+  description = "The name of the VPC"
+  default     = "telemetry-vpc"
+}

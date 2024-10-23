@@ -1,6 +1,6 @@
 resource "aws_ecs_service" "svc1234" {
   name                              = "svc1234"
-  cluster                           = data.aws_ecs_cluster.existing_cluster.arn  # Reference to the existing cluster ARN
+  cluster                           = aws_ecs_cluster.telemetry_cluster.id
   task_definition                   = aws_ecs_task_definition.telemetry_task.arn  # Reference to the task definition created earlier
   desired_count                     = 1
   launch_type                       = "FARGATE"
