@@ -1,0 +1,60 @@
+# Ignore Terraform files
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+*.zip
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+crash.log
+.terraform.lock.hcl
+
+# Ignore the Terraform workspace configuration
+*.tfplan
+
+# Ignore local environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignore sensitive information files
+*.pem
+*.key
+
+# Ignore any additional files that shouldn't be tracked
+# Standard build artifacts
+*.bin
+*.exe
+*.dll
+*.out
+
+# Logs
+*.log
+
+# Backup files
+*~
+*.bak
+
+# macOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
+ehthumbs.db
+
+# Visual Studio Code settings
+.vscode/
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Other IDE settings
+*.swp
+*.swo
+
+# Ignore any other temporary files
+temp/
+tmp/
