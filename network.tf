@@ -1,7 +1,7 @@
 resource "aws_security_group" "telemetry_sg" {
   name        = "${var.task_name}-sg"
   description = "Security group for telemetry services"
-  vpc_id      = "vpc-099725eae4c0e2586"  # Replace with your VPC ID
+  vpc_id      = aws_vpc.main.id  # Replace with your VPC ID
 
   // Ingress rules
   ingress {

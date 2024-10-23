@@ -10,7 +10,7 @@ resource "aws_ecs_service" "svc1234" {
   deployment_maximum_percent          = 200
 
   network_configuration {
-    subnets          = ["subnet-0fbe345fb806d775f"]
+    subnets          = [aws_subnet.public_subnet1.id]
     security_groups  = [aws_security_group.telemetry_sg.id]
     assign_public_ip = true
   }
