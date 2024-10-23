@@ -10,10 +10,7 @@ resource "aws_ecs_service" "svc1234" {
   deployment_maximum_percent          = 200
 
   network_configuration {
-    subnets          = [
-    aws_subnet.public_subnet1.id,
-    aws_subnet.public_subnet2.id
-  ]
+    subnets          = [aws_subnet.private_subnet1.id]
     security_groups  = [aws_security_group.telemetry_sg.id]
     assign_public_ip = false
   }
@@ -44,4 +41,8 @@ resource "aws_ecs_service" "svc1234" {
   tags = {
     Name = "ECS Service svc1234"
   }
+  depends_on = [ 
+    aws_lb.nlb,
+    aws_nat_gateway.nat 
+    ]
 }
