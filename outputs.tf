@@ -1,3 +1,4 @@
-output "task_definition_arn" {
-  value = aws_ecs_task_definition.telemetry_task.arn
+output "nlb_dns_name" {
+  description = "The DNS name of the Network Load Balancer"
+  value       = aws_lb.nlb.dns_name
 }
