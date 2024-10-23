@@ -94,6 +94,12 @@ resource "aws_ecs_task_definition" "telemetry_task" {
           condition     = "HEALTHY"
         }
       ]
+      healthCheck = {
+        command     = ["CMD-SHELL", "curl -f http://localhost:8080/health/ || exit 1"]
+        interval    = 30
+        timeout     = 5
+        retries     = 3
+      }
       logConfiguration = {  # Correct naming for log configuration
         logDriver = "awslogs"
         options = {
