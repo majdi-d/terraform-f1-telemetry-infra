@@ -9,16 +9,6 @@ variable "task_name" {
   type        = string
 }
 
-variable "task_role_arn" {
-  description = "The ARN of the IAM role for the task"
-  type        = string
-}
-
-variable "execution_role_arn" {
-  description = "The ARN of the IAM role for the task execution"
-  type        = string
-}
-
 variable "network_mode" {
   description = "The networking mode to use for the task"
   type        = string
@@ -41,4 +31,10 @@ variable "requires_compatibilities" {
   description = "The launch type compatibility for the task definition"
   type        = list(string)
   default     = ["FARGATE"]
+}
+
+variable "task_role_arn" {
+  description = "The ARN of the IAM role for the task"
+  type        = string
+  default     = "my-ecsTaskExecutionRole"  # Optionally set a default value or leave empty to require input
 }

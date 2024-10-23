@@ -1,7 +1,7 @@
 resource "aws_ecs_task_definition" "telemetry_task" {
-  family                   = var.task_name
-  task_role_arn           = var.task_role_arn
-  execution_role_arn      = var.execution_role_arn
+  family                  = var.task_name
+  task_role_arn          = aws_iam_role.ecs_task_execution_role.arn  # Use the role ARN from IAM
+  execution_role_arn     = aws_iam_role.ecs_task_execution_role.arn  # Use the role ARN from IAM
   network_mode            = var.network_mode
   cpu                     = var.cpu
   memory                  = var.memory
@@ -11,7 +11,8 @@ resource "aws_ecs_task_definition" "telemetry_task" {
     {
       name             = "influxdb"
       image            = "influxdb:2"
-      cpu              = 0
+      cpu              = local.influxdb_cpu
+      memory           = local.influxdb_memory
       essential        = true
       portMappings = [
         {
@@ -32,7 +33,7 @@ resource "aws_ecs_task_definition" "telemetry_task" {
         { name = "DOCKER_INFLUXDB_INIT_ORG", value = "myorg" },
         { name = "SNOWFLAKE_OCSP_FAIL_OPEN", value = "false" }
       ]
-      healthCheck {
+      healthCheck = {
         command     = ["CMD-SHELL", "curl -f http://localhost:8086 || exit 1"]
         interval    = 30
         timeout     = 5
@@ -42,7 +43,8 @@ resource "aws_ecs_task_definition" "telemetry_task" {
     {
       name             = "grafana"
       image            = "grafana/grafana:latest"
-      cpu              = 0
+      cpu              = local.grafana_cpu
+      memory           = local.grafana_memory
       essential        = false
       portMappings = [
         {
@@ -57,13 +59,13 @@ resource "aws_ecs_task_definition" "telemetry_task" {
         { name = "GF_DASHBOARDS_MIN_REFRESH_INTERVAL", value = "200ms" },
         { name = "GF_SECURITY_ADMIN_PASSWORD", value = "MyGrafanaAdminPassword" }
       ]
-      depends_on = [
+      dependsOn = [   # Correct usage for the ECS task definition context
         {
-          container_name = "influxdb"
-          condition      = "START"
+          containerName = "influxdb"
+          condition     = "START"
         }
       ]
-      healthCheck {
+      healthCheck = {
         command     = ["CMD-SHELL", "curl -f http://localhost:3000 || exit 1"]
         interval    = 30
         timeout     = 5
@@ -73,7 +75,8 @@ resource "aws_ecs_task_definition" "telemetry_task" {
     {
       name             = "fluxdbexporter"
       image            = "541962714297.dkr.ecr.us-east-1.amazonaws.com/telemetry-repo:latest"
-      cpu              = 0
+      cpu              = local.fluxdbexporter_cpu
+      memory           = local.fluxdbexporter_memory
       essential        = false
       portMappings = [
         {
@@ -85,14 +88,14 @@ resource "aws_ecs_task_definition" "telemetry_task" {
       environment = [
         { name = "INFLUXDB_URL", value = "http://127.0.0.1:8086" }
       ]
-      depends_on = [
+      dependsOn = [   # Correct usage for the ECS task definition context
         {
-          container_name = "influxdb"
-          condition      = "HEALTHY"
+          containerName = "influxdb"
+          condition     = "HEALTHY"
         }
       ]
-      log_configuration {
-        log_driver = "awslogs"
+      logConfiguration = {  # Correct naming for log configuration
+        logDriver = "awslogs"
         options = {
           "awslogs-group"         = "/ecs/${var.task_name}-logs"
           "mode"                  = "non-blocking"
