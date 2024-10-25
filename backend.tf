@@ -8,9 +8,9 @@
 ##################################################
 terraform {
   backend "s3" {
-    bucket         = "tf-f1-telemetry"
+    bucket         = "tf-f1-telemetry-bkend"
     key            = "state/terraform.tfstate"
-    region         = "us-east-1"
+    region         = "me-central-1"
     encrypt        = true
     dynamodb_table = "tf-f1-telemetry-state"
   }

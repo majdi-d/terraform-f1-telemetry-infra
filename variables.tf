@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region to deploy the ECS task"
   type        = string
-  default     = "us-east-1"
+  default     = "me-central-1"
 }
 
 variable "task_name" {
