@@ -1,12 +1,22 @@
-# Retrieve the existing Route 53 hosted zone
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This configuration retrieves an existing Route 53 hosted zone 
+# and creates an alias record pointing to the Network Load 
+# Balancer (NLB) configured for the telemetry services. 
+# The alias record allows access to the NLB via a friendly 
+# subdomain (e.g., app.f1telemetry.online), enabling users 
+# to reach the services routed by the NLB with ease. Health 
+# checks are enabled for improved fault tolerance.
+##################################################
 data "aws_route53_zone" "existing_zone" {
   name = "f1telemetry.online."
 }
 
-# Create an alias record in Route 53 for the NLB
 resource "aws_route53_record" "nlb_alias" {
   zone_id = data.aws_route53_zone.existing_zone.zone_id
-  name     = "app"  # Change this to the desired alias name (e.g., "api.f1telemetry.online")
+  name     = "app" 
   type     = "A"  # Use "A" for IPv4 addresses
 
   alias {

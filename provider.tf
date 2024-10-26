@@ -5,7 +5,7 @@
 #
 # The process involves:
 # 1. Defining the AWS provider using HashiCorp's Terraform AWS provider, specifying version 5.70.0.
-# 2. Configuring the provider to use the 'us-east-1' region for all AWS resources defined in this Terraform configuration.
+# 2. Configuring the provider to use the 'me-central-1' region for all AWS resources defined in this Terraform configuration.
 ##################################################
 
 

@@ -1,3 +1,11 @@
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This Terraform configuration defines an ECS service named "svc1234" that runs on Fargate within the ECS cluster "telemetry_cluster." 
+# It references a task definition, and multiple load balancer configurations are included for InfluxDB, Grafana, and FluxDBExporter. 
+# The service ensures high availability through deployment configuration options. It also specifies a platform version and optional tags.
+##################################################
 resource "aws_ecs_service" "svc1234" {
   name                              = "svc1234"
   cluster                           = aws_ecs_cluster.telemetry_cluster.id

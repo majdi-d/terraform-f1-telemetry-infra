@@ -1,3 +1,13 @@
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This Terraform configuration defines a Network Load Balancer (NLB) 
+# and associated target groups for InfluxDB, Grafana, and FluxDB Exporter services. 
+# The NLB is set up with public subnets to route traffic to these services 
+# based on specific ports, allowing both TCP and UDP traffic. 
+# Health checks are configured for each target group to ensure service availability.
+##################################################
 resource "aws_lb" "nlb" {
   name               = "${var.task_name}-nlb"
   load_balancer_type = "network"

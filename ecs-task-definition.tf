@@ -1,3 +1,13 @@
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This Terraform configuration defines an ECS task definition for the F1 Telemetry project. The task uses three containers:
+# 1. InfluxDB: Stores telemetry data, with health checks and environment variables configured for initialization.
+# 2. Grafana: Visualizes telemetry data, with dependent startup on InfluxDB and a health check.
+# 3. FluxDBExporter: Exports telemetry data, dependent on InfluxDB’s health and logs sent to CloudWatch.
+# The task runs on Fargate and specifies resource limits for CPU and memory.
+##################################################
 resource "aws_ecs_task_definition" "telemetry_task" {
   family                  = var.task_name
   task_role_arn          = aws_iam_role.ecs_task_execution_role.arn  # Use the role ARN from IAM

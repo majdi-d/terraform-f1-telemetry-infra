@@ -1,3 +1,12 @@
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This Terraform configuration defines a security group for the telemetry services. 
+# It allows inbound traffic for specific ports required by the InfluxDB, Grafana, 
+# and FluxDB Exporter services, as well as all outbound traffic. 
+# The ingress rules permit HTTP and UDP traffic from anywhere, making the services accessible as needed.
+##################################################
 resource "aws_security_group" "telemetry_sg" {
   name        = "${var.task_name}-sg"
   description = "Security group for telemetry services"

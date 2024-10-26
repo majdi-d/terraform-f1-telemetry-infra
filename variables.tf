@@ -1,3 +1,15 @@
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This section defines the input variables used in 
+# the Terraform configuration for deploying ECS tasks 
+# within the specified AWS region. Each variable has 
+# a description detailing its purpose and can be customized 
+# based on the deployment requirements. Default values 
+# are provided where applicable, allowing for flexibility 
+# in configuration.
+##################################################
 variable "aws_region" {
   description = "AWS region to deploy the ECS task"
   type        = string

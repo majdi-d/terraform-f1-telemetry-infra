@@ -1,3 +1,14 @@
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This configuration sets up the Amazon VPC and its 
+# associated networking components. It defines a VPC 
+# with public and private subnets, an Internet Gateway, 
+# and a NAT Gateway to allow private subnets to access 
+# the internet. Each resource is tagged with the VPC 
+# name for easier management.
+##################################################
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
   enable_dns_support = true

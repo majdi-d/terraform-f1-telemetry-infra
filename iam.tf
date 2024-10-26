@@ -1,3 +1,11 @@
+##################################################
+# Author: Majdi Dhissi
+# Project: F1 Telemetry with AWS
+# Description: 
+# This Terraform configuration creates an IAM role for ECS task execution with the required permissions to assume the role 
+# and attach policies for CloudWatch logging. It includes an inline policy to allow ECS tasks to create and manage logs in CloudWatch.
+##################################################
+
 resource "aws_iam_role" "ecs_task_execution_role" {
   name               = "${var.task_name}-execution-role"
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role_policy.json
