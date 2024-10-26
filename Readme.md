@@ -15,7 +15,7 @@ The **F1 Telemetry with AWS** project aims to automate the collection and report
 - [License](#license)
 
 ## Project Structure
-
+f1-telemetry/ │ ├── modules/ │ ├── vpc/ │ │ └── main.tf │ ├── ecs/ │ │ └── main.tf │ ├── nlb/ │ │ └── main.tf │ └── route53/ │ └── main.tf │ ├── outputs.tf ├── variables.tf ├── main.tf └── README.md
 
 ## Getting Started
 
