@@ -15,7 +15,25 @@ The **F1 Telemetry with AWS** project aims to automate the collection and report
 - [License](#license)
 
 ## Project Structure
-f1-telemetry/ │ ├── modules/ │ ├── vpc/ │ │ └── main.tf │ ├── ecs/ │ │ └── main.tf │ ├── nlb/ │ │ └── main.tf │ └── route53/ │ └── main.tf │ ├── outputs.tf ├── variables.tf ├── main.tf └── README.md
+TERRAFORM-F1-TELEMETRY-INFRA/
+├── .gitignore
+├── backend.tf
+├── data.tf
+├── ecs-cluster.tf
+├── ecs-service.tf
+├── ecs-task-definition.tf
+├── iam.tf
+├── locals.tf
+├── main.tf
+├── network.tf
+├── nlb.tf
+├── outputs.tf
+├── provider.tf
+├── route53.tf
+├── terraform.tfvars
+├── variables.tf
+└── vpc.tf 
+└── README.md
 
 ## Getting Started
 
