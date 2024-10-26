@@ -32,7 +32,7 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/f1-telemetry.git
+    git clone https://github.com/yourusername/terraform-f1-telemetry-infra.git
     cd f1-telemetry
     ```
 
