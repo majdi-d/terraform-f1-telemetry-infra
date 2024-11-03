@@ -16,7 +16,7 @@ The **F1 Telemetry with AWS** project aims to automate the collection and report
 
 ## Project Article
 This project aims to develop a UDP listener to capture, parse, and visualize this data in real-time using various AWS services, including ECS, Elastic Load Balancing, and Route 53.
-For more information you can visit https://majdid.medium.com/
+For more information you can visit https://medium.com/towards-aws/f1-telemetry-with-aws-and-a-ps5-ea5a774fce9d
 
 ## Getting Started
 
