@@ -84,7 +84,7 @@ resource "aws_ecs_task_definition" "telemetry_task" {
     },
     {
       name             = "fluxdbexporter"
-      image            = "541962714297.dkr.ecr.us-east-1.amazonaws.com/telemetry-repo:latest"
+      image            = "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/telemetry-repo:latest"
       cpu              = local.fluxdbexporter_cpu
       memory           = local.fluxdbexporter_memory
       essential        = false
